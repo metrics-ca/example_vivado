@@ -3,7 +3,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // more comments
 //`include "module_full_adder.v"
-
+`timescale 1ns/1ps
 module carry_lookahead_adder
   #(parameter WIDTH)
    (
@@ -49,4 +49,3 @@ module carry_lookahead_adder
   assign o_result = {w_C[WIDTH], w_SUM};   // Verilog Concatenation
 
 endmodule // carry_lookahead_adder
-

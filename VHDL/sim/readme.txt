@@ -12,20 +12,16 @@ Please refer to the DSim User Manual for more information:
 https://support.metrics.ca/hc/en-us/articles/360061975232-User-Guide-DSim-User-Manual
 
 Compile and Run Simulation
-Note: '-L unisims_ver' is needed at elaboration time, it will instruct DSim to look for the component in the library called unisims_ver.
-unisims_ver is one of the precompiled libraries from Vivado.
+Since this is a VHDL Design + Testbench, we must Analyze separately, while Elaborate and Run can be together or separate.
 Depending on your previous experience and preference, you can choose one of the following methods to achieve the same purpose.
 
-1. 1-step Method: Analyze, Elaborate, and Run in one step.
-> mdc dsim -a '-F filelist.txt -L unisims_ver +acc+b -waves waves.vcd'
+1. 2-step Method: Analyze separately, Elaborate and Run in one step.
+> mdc dvhcom -a '-F filelist.txt'
+> mdc dsim -a '-top work.carry_lookahead_adder_tb +acc+b -waves waves.vcd'
 
-2. 2-step Method: Analyze and Elaborate in one step, Run in a second step. These are perfect for "compile-once, run many" simulations with random seed flows.
-> mdc dsim -a '-genimage myimage -F filelist.txt -L unisims_ver +acc+b'
-> mdc dsim -a '-image myimage -waves waves.vcd'
-
-3. 3-step Method: Analyze, Elaborate and Run in 3 seperate steps. These are best suited for VHDL and mixed language flows.
-> mdc dvlcom -a '-F filelist.txt'
-> mdc dsim -a '-genimage myimage -top work.carry_lookahead_adder_tb -L unisims_ver +acc+b'
+2. 3-step Method: Analyze separately, Elaborate and Run in two steps. These are perfect for "compile-once, run-many" simulations with different random seed flows.
+> mdc dvhcom -a '-F filelist.txt'
+> mdc dsim -a '-genimage myimage -top work.carry_lookahead_adder_tb +acc+b'
 > mdc dsim -a '-image myimage -waves waves.vcd'
 
 Conclusion:

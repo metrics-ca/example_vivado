@@ -47,11 +47,7 @@ begin
   -- Mapping to use Xilinx UNISIM
   -- May require glbl
 
-  -- xor_i0 : XOR2 port map (w_WIRE_1, i_bit1, i_bit2);
-  xor_i0 : XOR2 port map (
-    O => w_WIRE_1, 
-    I0 => i_bit1, 
-    I1 => i_bit2);
+  xor_i0 : XOR2 port map (w_WIRE_1, i_bit1, i_bit2);
   and_i1 : AND2 port map (w_WIRE_2, w_WIRE_1, i_carry);
   and_i2 : AND2 port map (w_WIRE_3, i_bit1, i_bit2);
   xor_i3 : XOR2 port map (o_sum, w_WIRE_1, i_carry);
